@@ -9,6 +9,7 @@
 #import "ViewController.h"
 
 @interface ViewController ()
+@property (weak, nonatomic) IBOutlet UITextField *textField;
 
 @end
 
@@ -24,6 +25,12 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)changeColor:(id)sender {
+    [self.view endEditing:YES];
+    NSLog(@"Sending notification");
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"ChangeColorNotification" object:[self.textField.text lowercaseString]];
 }
 
 @end
